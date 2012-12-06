@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>uploader</title>
+<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+<style type="text/css">@import url('CSS/style.css');</style>
+<script type="text/javascript">
+
+function addRecord()
+{
+  var term_name = $('#name').val();		
+	
+		$('#propspectDiv').html('<img src="Immagini/ajax.gif" />');	
+		$('#propspectDiv').css("background-color","red");	
+		$.ajax({
+				//url : 'data.php', 					
+				data:{
+					"name" : term_name				
+				},
+				success : function(data){
+					window.setTimeout(function(){
+						$('#propspectDiv').html('Hai scritto:'); 
+						$('#data').css("display","block");  
+						$('#data').html(data);				
+					}, 2000);
+				}
+			});
+}
+
+</script>
+</head>
+<body>
+	<form name="uploader">
+    <input type="text" id="name" placeholder="tuo e-mail" />
+	<input type="button" value="Registra" onClick="addRecord()" />
+    </form>
+	<div id="propspectDiv"></div>
+	<table id="data" border="1" cellspacing="0" cellpadding="0" width="75" style="display:none;"></table>
+</body>
+</html>
